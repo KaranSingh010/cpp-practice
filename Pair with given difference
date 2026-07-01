@@ -1,0 +1,60 @@
+/*
+
+Enter size of array: 6
+Enter elements: 5 3 20 2 50 80
+Enter difference: 78
+Pair found
+
+*/
+
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool findPair(int arr[], int n, int k) {
+    sort(arr, arr + n);
+
+    int i = 0, j = 1;
+
+    while (i < n && j < n) {
+        if (i == j) {
+            j++;
+            continue;
+        }
+
+        int diff = arr[j] - arr[i];
+
+        if (diff == k)
+            return true;
+        else if (diff < k)
+            j++;
+        else
+            i++;
+    }
+
+    return false;
+}
+
+int main() {
+    int n, k;
+
+    cout << "Enter size of array: ";
+    cin >> n;
+
+    int arr[n];
+
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    cout << "Enter difference: ";
+    cin >> k;
+
+    if (findPair(arr, n, k))
+        cout << "Pair found";
+    else
+        cout << "Pair not found";
+
+    return 0;
+}
